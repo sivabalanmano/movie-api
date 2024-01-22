@@ -38,5 +38,31 @@ router.get("/allmovies/",(req,res)=>{
           })
     })
 })
+router.post("/postmovie/",(req,res)=>{
+    const yourmovieName = req.body.movieName;
+    const yourdirectorName =req.body.directorName;
+    const yourgernre = req.body.gernre;
+    const yourrunTime =req.body.runTime;
+    const yourrating = req.body.rating;
+    const yourplot =req.body.plot;
+
+
+    let query =sqlSring.format("INSERT INTO movie (movieName, directorName, gernre, runTime, rating, plot) VALUES (?, ?, ?, ?, ?, ?)",
+    [yourmovieName,yourdirectorName,yourgernre,yourrunTime,yourrating,yourplot]);
+    connection.query(query,(err,result)=>{
+        if(err){
+           console.log(err);
+
+           return res.json({
+            status:false,
+            message:err.message,
+           })
+        }
+        return res.json({
+            status:true,
+            message:"data updated"
+           })
+    })
+})
 
 export default router;

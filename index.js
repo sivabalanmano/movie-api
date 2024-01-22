@@ -1,8 +1,6 @@
-import express, { Router } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import movieRoute from "./routes/movie.js";
-import sqlSring from "sqlstring";
-
 import cors from "cors";
 
 const app = express();
